@@ -16,4 +16,4 @@ Ruribitakiは,valaで使用することのできるTwitterライブラリです.
 
 ## LICENSE
 Copyright &copy; 2015 hallelujahdrive  
-Licensed under the [WRFPL version 2.0](http://www.wtfpl.net/txt/copying)
+Licensed under the [WTFPL version 2.0](http://www.wtfpl.net/txt/copying)
