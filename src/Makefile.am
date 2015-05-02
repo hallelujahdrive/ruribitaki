@@ -18,7 +18,7 @@ sources = \
 				FavoritesCreate.vala \
 				FavoritesDestroy.vala \
 				MonthStrToNum.vala \
-				OauthAccessToken.vala \
+				OAuthAccessToken.vala \
 				ParseProfileJson.vala \
 				ParsedJsonObj.vala \
 				RequestToken.vala \
@@ -41,7 +41,7 @@ ruribitaki.vapi ruribitaki.h $(csources) : $(sources)
 	touch ruribitaki.vapi ruribitaki.h
 
 libruribitaki_la_LIBADD = @RURI_LIBS@
-libruribitaki_la_LDFLAGS= -module -X -shared -X -fPIC -vsrsion-info 0:0:0
+libruribitaki_la_LDFLAGS= -X -shared -X -fPIC -vsrsion-info 0:0:0
 libruribitaki_la_VALASOURCES = $(sources)
 libruribitaki_la_SOURCES = $(csources)
 

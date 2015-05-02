@@ -1,6 +1,7 @@
 *.c
 *.geany
 *.h
+*.la
 *.lo
 *.o
 *.pc
