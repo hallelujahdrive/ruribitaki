@@ -36,10 +36,10 @@ sources = \
 
 csources = $(sources:.vala=.c)
 
-ruribitaki.vapi ruribitaki.h $(csources) : $(sources)
+ruribitaki.vapi ruribitaki.h : $(sources)
 	@$(VALAC) $^ --vapi=ruribitaki.vapi -C --header ruribitaki.h @RURI_VALA_FLAGS@
 	touch ruribitaki.vapi ruribitaki.h
-
+	
 libruribitaki_la_LIBADD = @RURI_LIBS@
 libruribitaki_la_LDFLAGS= -X -shared -X -fPIC -vsrsion-info 0:0:0
 libruribitaki_la_VALASOURCES = $(sources)
