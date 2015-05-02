@@ -7,9 +7,9 @@ Ruribitakiは,valaで使用することのできるTwitterライブラリです.
 
 ## Install
     $ ./autogen.sh
-		$ ./configure --prefix=/usr
-		$ make
-		$ sudo make install
+    $ ./configure --prefix=/usr
+    $ make
+    $ sudo make install
 
 ## Usage
 そのうち書きます.
