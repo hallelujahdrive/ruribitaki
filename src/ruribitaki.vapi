@@ -2,10 +2,10 @@
 
 namespace Ruribitaki {
 	[CCode (cheader_filename = "ruribitaki.h")]
-	[Compact]
 	public class Account {
 		public Rest.OAuthProxy api_proxy;
 		public int64 id;
+		public string id_str;
 		public string profile_image_url;
 		public string screen_name;
 		public Rest.OAuthProxy stream_proxy;

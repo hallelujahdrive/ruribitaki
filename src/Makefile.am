@@ -1,6 +1,8 @@
 #AUTOMAKE_OPTIONS = subdir-objects
 AM_CPPFLAGS = $(RURI_CFLAGS)
 
+BUILT_SOURCES = libruribitaki_la_vala.stamp
+
 lib_LTLIBRARIES = libruribitaki.la
 
 include_HEADERS = ruribitaki.h
@@ -39,13 +41,14 @@ sources = \
 
 csources = $(sources:.vala=.c)
 
-ruribitaki.vapi ruribitaki.h $(csources) : $(sources)
+ruribitaki.vapi ruribitaki.h libruribitaki_la_vala.stamp : $(sources)
 	@$(VALAC) $^ --vapi=ruribitaki.vapi -C --header ruribitaki.h @RURI_VALA_FLAGS@
 	
 libruribitaki_la_LIBADD = @RURI_LIBS@
 libruribitaki_la_LDFLAGS= -X -shared -X -fPIC -vsrsion-info 0:0:0
 libruribitaki_la_VALASOURCES = $(sources)
-libruribitaki_la_SOURCES = $(csources)
+libruribitaki_la_SOURCES = libruribitaki_la_vala.stamp \
+															 $(csources)
 
 CLEANFILES = *.c *.h *.o *.lo *.lib *.vapi .deps/* .libs/*
 EXTRA_DIST = $(sources)
