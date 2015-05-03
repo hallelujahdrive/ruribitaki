@@ -17,8 +17,10 @@ sources = \
 				Enums.vala \
 				FavoritesCreate.vala \
 				FavoritesDestroy.vala \
+				Functions.vala \
 				MonthStrToNum.vala \
 				OAuthAccessToken.vala \
+				Parameters.vala \
 				ParseProfileJson.vala \
 				ParsedJsonObj.vala \
 				RequestToken.vala \
@@ -29,21 +31,20 @@ sources = \
 				StatusesShow.vala \
 				StatusesTimeline.vala \
 				StatusesUpdate.vala \
-				Strings.vala \
 				Struct.vala \
+				URLs.vala \
 				User.vala \
 				UserStream.vala
 
 csources = $(sources:.vala=.c)
 
-ruribitaki.vapi ruribitaki.h : $(sources)
+ruribitaki.vapi ruribitaki.h $(csources) : $(sources)
 	@$(VALAC) $^ --vapi=ruribitaki.vapi -C --header ruribitaki.h @RURI_VALA_FLAGS@
-	touch ruribitaki.vapi ruribitaki.h
 	
 libruribitaki_la_LIBADD = @RURI_LIBS@
 libruribitaki_la_LDFLAGS= -X -shared -X -fPIC -vsrsion-info 0:0:0
 libruribitaki_la_VALASOURCES = $(sources)
 libruribitaki_la_SOURCES = $(csources)
 
-CLEANFILES = *.c *.h *.o *.lo *.lib *.vapi Makefile .deps/* .libs/*
+CLEANFILES = *.c *.h *.o *.lo *.lib *.vapi .deps/* .libs/*
 EXTRA_DIST = $(sources)

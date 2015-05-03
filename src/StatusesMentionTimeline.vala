@@ -10,6 +10,6 @@ namespace Ruribitaki{
     proxy_call.set_method("GET");
     proxy_call.add_param(PARAM_COUNT,count.to_string());
     
-    return statuses_timeline(proxy_call,account.my_screen_name);
+    return statuses_timeline(proxy_call,account.screen_name);
   }
 }

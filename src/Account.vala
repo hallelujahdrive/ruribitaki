@@ -4,11 +4,10 @@ namespace Ruribitaki{
   [Compact]
   public class Account{
     //メンバ
-    public int my_list_id;
-    public int my_id;
-    public string my_screen_name;
-    public string my_profile_image_url;
-    public string my_time_zone;
+    public int id;
+    public string screen_name;
+    public string profile_image_url;
+    public string time_zone;
     public OAuthProxy api_proxy;
     public OAuthProxy stream_proxy;
     

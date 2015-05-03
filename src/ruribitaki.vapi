@@ -5,12 +5,11 @@ namespace Ruribitaki {
 	[Compact]
 	public class Account {
 		public Rest.OAuthProxy api_proxy;
-		public int my_id;
-		public int my_list_id;
-		public string my_profile_image_url;
-		public string my_screen_name;
-		public string my_time_zone;
+		public int id;
+		public string profile_image_url;
+		public string screen_name;
 		public Rest.OAuthProxy stream_proxy;
+		public string time_zone;
 		public Account (string consumer_key, string consumer_seclet);
 	}
 	[CCode (cheader_filename = "ruribitaki.h")]
@@ -112,8 +111,6 @@ namespace Ruribitaki {
 	public static async bool favorites_create (Ruribitaki.Account account, string id_str);
 	[CCode (cheader_filename = "ruribitaki.h")]
 	public static async bool favorites_destroy (Ruribitaki.Account account, string id_str);
-	[CCode (cheader_filename = "ruribitaki.h")]
-	public static int? month_str_to_num (string month_str);
 	[CCode (cheader_filename = "ruribitaki.h")]
 	public static bool oauth_access_token (Ruribitaki.Account account, string pin_code);
 	[CCode (cheader_filename = "ruribitaki.h")]

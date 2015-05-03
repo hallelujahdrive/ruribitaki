@@ -14,7 +14,6 @@ namespace Ruribitaki{
     }
       
     //run
-    //なんか気持ち悪い構文になっているが、こうしないとwarnningが出るのでRestのバグかも知れない
     proxy_call.invoke_async.begin(null,(obj,res)=>{
       try{
         result=proxy_call.invoke_async.end(res);

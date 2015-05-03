@@ -40,7 +40,7 @@ namespace Ruribitaki{
             //シグナル発行
             //debug
             //print("%s\n",json_sb.str);
-            callback_json(new ParsedJsonObj.from_string(json_sb.str,account.my_screen_name));
+            callback_json(new ParsedJsonObj.from_string(json_sb.str,account.screen_name));
             //json_sbの初期化
             json_sb.erase();
           }

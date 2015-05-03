@@ -12,13 +12,13 @@ namespace Ruribitaki{
       //jsonの解析
       foreach(string member in profile_object.get_members()){
         switch(member){
-          case "screen_name": account.my_screen_name=profile_object.get_string_member(member);
+          case "screen_name": account.screen_name=profile_object.get_string_member(member);
           break;
-          case "id": account.my_id=(int)profile_object.get_int_member(member);
+          case "id": account.id=(int)profile_object.get_int_member(member);
           break;
-          case "profile_image_url": account.my_profile_image_url=profile_object.get_string_member(member);
+          case "profile_image_url": account.profile_image_url=profile_object.get_string_member(member);
           break;
-          case "time_zone":account.my_time_zone=profile_object.get_string_member(member);
+          case "time_zone":account.time_zone=profile_object.get_string_member(member);
           break;
         }
       }

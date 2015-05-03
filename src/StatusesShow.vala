@@ -11,7 +11,7 @@ namespace Ruribitaki{
     proxy_call.add_param(PARAM_ID,id_str);
     
     proxy_call.invoke_async.begin(null,()=>{
-      parsed_json_obj=new ParsedJsonObj.from_string(proxy_call.get_payload(),account.my_screen_name);
+      parsed_json_obj=new ParsedJsonObj.from_string(proxy_call.get_payload(),account.screen_name);
       statuses_show.callback();
     });
     
