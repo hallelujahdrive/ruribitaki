@@ -87,7 +87,7 @@ namespace Ruribitaki{
               break;
               case "source":
               //sub_userの取得
-              sub_user=parseuser(json_obj.get_object_member(event_member),null); 
+              sub_user=parse_user_json_object(json_obj.get_object_member(event_member)); 
               break;
             }
           }
@@ -109,10 +109,8 @@ namespace Ruribitaki{
               case "user":
               //userの解析
               type=ParsedJsonObjType.RETWEET;
-              sub_user=parseuser(json_obj.get_object_member(retweeted_status_member),null);
-              if(sub_user.screen_name==my_screen_name){
-                retweeted=true;
-              }
+              sub_user=parse_user_json_object(json_obj.get_object_member(retweeted_status_member));
+              retweeted=(sub_user.screen_name==my_screen_name);
               break;
             }
           }
@@ -170,10 +168,13 @@ namespace Ruribitaki{
             break;
             //userの解析
             case "user":
-            user=parseuser(json_obj.get_object_member(member),my_screen_name);
+            user=parse_user_json_object(json_obj.get_object_member(member));
+            is_mine=(user.screen_name==my_screen_name);
             break;
             //多分だけどこれが読み出されるのはDELETEの時だけ
-            case "user_id_str":user=new User(null,null,json_obj.get_string_member(member),null,false);
+            case "user_id_str":
+            user=new User();
+            user.id_str=json_obj.get_string_member(member);
             break;
           }
         }
@@ -231,18 +232,6 @@ namespace Ruribitaki{
         }
       }
     }
-    
-    //nameの&の置換(やらないとmark upでコケる
-    private string parse_name(string get_name){
-      string name_regex=null;
-      try{  //セイキヒョウゲンカッコバクショウでクライアント名とURLを解析
-        var name_regex_replace=new Regex("(&)");
-        name_regex=name_regex_replace.replace(get_name,-1,0,"&amp;");
-      }catch(Error e){
-        print("%s\n",e.message);
-      }
-      return name_regex;
-    }
     private void parse_source(string get_source){
       string[] source_split={"",""};
       //セイキヒョウゲンカッコバクショウでクライアント名とURLを解析
@@ -284,34 +273,6 @@ namespace Ruribitaki{
           }
         }
       }
-    }
-    
-    //userの解析
-    private User parseuser(Json.Object user_obj,string? my_screen_name){
-      string name=null;
-      string screen_name=null;
-      string id_str=null;
-      string profile_image_url=null;
-      bool is_protected=false;
-      foreach(string user_member in user_obj.get_members()){
-        switch(user_member){
-          case "name":name=parse_name(user_obj.get_string_member(user_member));
-          break;
-          case "screen_name":
-          screen_name=user_obj.get_string_member(user_member);
-          //自分のtweetかどうか
-          is_mine=my_screen_name==screen_name;
-          break;
-          case "id_str":id_str=user_obj.get_string_member(user_member);
-          break;
-          case "profile_image_url":profile_image_url=user_obj.get_string_member(user_member);
-          break;
-          case "protected":is_protected=user_obj.get_boolean_member(user_member);
-          break;
-
-        }
-      }
-      return new User(name,screen_name,id_str,profile_image_url,is_protected);
     }
   }
 }

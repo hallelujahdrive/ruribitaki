@@ -1,3 +1,4 @@
+using Json;
 using Rest;
 
 namespace Ruribitaki{
@@ -9,7 +10,12 @@ namespace Ruribitaki{
     proxy_call.set_method("GET");
     try{
       proxy_call.run();
-      return parse_profile_json(account,proxy_call.get_payload());
+      Parser parser=new Parser();
+      parser.load_from_data(proxy_call.get_payload());
+      Json.Node node=parser.get_root();
+      Json.Object object=node.get_object();
+      parse_profile_json_object(account,object);
+      return true;
     }catch(Error e){
       print("Account Verify Error:%s\n",e.message);
       return false;

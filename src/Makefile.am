@@ -21,8 +21,9 @@ sources = \
 				MonthStrToNum.vala \
 				OAuthAccessToken.vala \
 				Parameters.vala \
-				ParseProfileJson.vala \
+				ParseProfileJsonObject.vala \
 				ParsedJsonObj.vala \
+				ParseUserJsonObject.vala \
 				RequestToken.vala \
 				StatusesHomeTimeline.vala \
 				StatusesMentionTimeline.vala \

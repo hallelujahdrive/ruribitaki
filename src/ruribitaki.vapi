@@ -5,7 +5,7 @@ namespace Ruribitaki {
 	[Compact]
 	public class Account {
 		public Rest.OAuthProxy api_proxy;
-		public int id;
+		public int64 id;
 		public string profile_image_url;
 		public string screen_name;
 		public Rest.OAuthProxy stream_proxy;
@@ -38,17 +38,16 @@ namespace Ruribitaki {
 		public ParsedJsonObj (Json.Node? json_node, string? my_screen_name);
 		public ParsedJsonObj.from_string (string json_str, string? screen_name);
 	}
-	[CCode (cheader_filename = "ruribitaki.h", copy_function = "ruribitaki_user_copy")]
+	[CCode (cheader_filename = "ruribitaki.h")]
 	[Compact]
-	[Immutable]
 	public class User {
+		public int64 id;
 		public string id_str;
 		public bool is_protected;
 		public string name;
 		public string profile_image_url;
 		public string screen_name;
-		public User (string? name, string? screen_name, string? id_str, string? profile_image_url, bool is_protected);
-		public Ruribitaki.User copy ();
+		public User ();
 	}
 	[CCode (cheader_filename = "ruribitaki.h")]
 	public class UserStream {
@@ -113,8 +112,6 @@ namespace Ruribitaki {
 	public static async bool favorites_destroy (Ruribitaki.Account account, string id_str);
 	[CCode (cheader_filename = "ruribitaki.h")]
 	public static bool oauth_access_token (Ruribitaki.Account account, string pin_code);
-	[CCode (cheader_filename = "ruribitaki.h")]
-	public static bool parse_profile_json (Ruribitaki.Account account, string profile_json);
 	[CCode (cheader_filename = "ruribitaki.h")]
 	public static string? request_token (Ruribitaki.Account account);
 	[CCode (cheader_filename = "ruribitaki.h")]

@@ -4,7 +4,7 @@ namespace Ruribitaki{
   [Compact]
   public class Account{
     //メンバ
-    public int id;
+    public int64 id;
     public string screen_name;
     public string profile_image_url;
     public string time_zone;
