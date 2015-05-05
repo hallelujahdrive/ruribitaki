@@ -6,6 +6,7 @@
 *.o
 *.pc
 *.stamp
+*.vapi
 *Makefile
 *Makefile.in
 aclocal.m4

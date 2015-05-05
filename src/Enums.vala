@@ -10,22 +10,24 @@ namespace Ruribitaki{
     TWEET;
   }
   
-  //eventのtype.UNKNOWNは暫定
+  //eventのtype.NULLは暫定
   public enum EventType{
     ACCESS_REVOKED,
     BLOCK,
-    UNBLOCK,
     FAVORITE,
-    UNFAVORITE,
+    FAVORITED_RETWEET,
     FOLLOW,
-    UNFOLLOW,
     LIST_CREATED,
     LIST_DESTROYED,
-    LIST_UPDATED,
     LIST_MEMBER_ADDED,
     LIST_MEMBER_REMOVED,
-    LIST_USER_SUBSCRIBED,
     LIST_USER_UNSUBSCRIBED,
+    LIST_UPDATED,
+    LIST_USER_SUBSCRIBED,
+    RETWEETED_RETWEET,
+    UNBLOCK,
+    UNFAVORITE,
+    UNFOLLOW,
     USER_UPDATE,
     NULL;
   }
