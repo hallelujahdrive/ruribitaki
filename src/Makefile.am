@@ -20,6 +20,8 @@ sources = \
 				FavoritesCreate.vala \
 				FavoritesDestroy.vala \
 				Functions.vala \
+				Hashtag.vala \
+				Methods.vala \
 				MonthStrToNum.vala \
 				OAuthAccessToken.vala \
 				Parameters.vala \
@@ -34,7 +36,7 @@ sources = \
 				StatusesShow.vala \
 				StatusesTimeline.vala \
 				StatusesUpdate.vala \
-				Struct.vala \
+				Url.vala \
 				URLs.vala \
 				User.vala \
 				UserStream.vala

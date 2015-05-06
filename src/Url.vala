@@ -1,10 +1,4 @@
-namespace Ruribitaki{
-  //hashtagの構造体
-  public struct hashtag{
-    public int[] indices;
-    public string text;
-  }
-    
+namespace Ruribitaki{    
   //urlの構造体
   public struct url{
     public string display_url;

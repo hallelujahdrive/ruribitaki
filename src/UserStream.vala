@@ -5,7 +5,6 @@ namespace Ruribitaki{
   public class UserStream{
     private unowned Account account;
     
-    private string json_frg;
     private StringBuilder json_sb=new StringBuilder();
     
     private ProxyCall proxy_call;
@@ -14,15 +13,15 @@ namespace Ruribitaki{
       this.account=account;
     }
   
-    public void run(){
+    public void run()throws Error{
       //proxy_callの設定
       proxy_call=account.stream_proxy.new_call();
       proxy_call.set_function(FUNCTION_USER);
-      proxy_call.set_method("GET");
+      proxy_call.set_method(METHOD_GET);
       try{
         proxy_call.continuous(user_stream_cb,proxy_call);
-      }catch(Error e){
-        print("Error:%s\n",e.message);
+      }catch(Error error){
+        throw error;
       }
     }
   
@@ -33,7 +32,7 @@ namespace Ruribitaki{
         callback_error(err);
       }
       if(buf!=null){
-        json_frg=buf.substring(0,(int)len);  
+        string json_frg=buf.substring(0,(int)len);  
         if(json_frg!="\n"){
           json_sb.append(json_frg);
           if(json_frg.has_suffix("\r\n")||json_frg.has_suffix("\r")){

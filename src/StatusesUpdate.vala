@@ -2,11 +2,13 @@ using Rest;
 
 namespace Ruribitaki{
   //tweetのpost
-  public async bool statuses_update(Account account,string status,string? in_reply_to_status_id_str){    
+  public async bool statuses_update(Account account,string status,string? in_reply_to_status_id_str)throws Error{    
     bool result=false;
+    Error error=null;
+    
     ProxyCall proxy_call=account.api_proxy.new_call();
     proxy_call.set_function(FUNCTION_STATUSES_UPDATE);
-    proxy_call.set_method("POST");
+    proxy_call.set_method(METHOD_POST);
     proxy_call.add_param(PARAM_STATUS,status);
     //リプライならtweet_idのパラメータを設定
     if(in_reply_to_status_id_str!=null){
@@ -18,11 +20,14 @@ namespace Ruribitaki{
       try{
         result=proxy_call.invoke_async.end(res);
       }catch(Error e){
-        print("Error : %s\n",e.message);
+        error=e;
       }
       statuses_update.callback();
     });
     yield;
+    if(error!=null){
+      throw error;
+    }
     return result;
   }
 }

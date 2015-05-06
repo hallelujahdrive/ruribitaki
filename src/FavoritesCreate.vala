@@ -2,8 +2,9 @@ using Rest;
 
 namespace Ruribitaki{
   //☆
-  public async bool favorites_create(Account account,string id_str){
+  public async bool favorites_create(Account account,string id_str)throws Error{
     bool result=false;
+    Error error=null;
     ProxyCall proxy_call=account.api_proxy.new_call();
     proxy_call.set_function(FUNCTION_FAVORITES_CREATE);
     proxy_call.set_method("POST");
@@ -14,12 +15,15 @@ namespace Ruribitaki{
       try{
         result=proxy_call.invoke_async.end(res);
       }catch(Error e){
-        print("Error : %s\n",e.message);
+        error=e;
       }
       favorites_create.callback();
     });
     
     yield;
+    if(error!=null){
+      throw error;
+    }
     return result;
   }
 }
