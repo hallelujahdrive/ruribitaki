@@ -21,14 +21,18 @@ sources = \
 				FavoritesDestroy.vala \
 				Functions.vala \
 				Hashtag.vala \
+				Media.vala \
 				Methods.vala \
 				MonthStrToNum.vala \
 				OAuthAccessToken.vala \
 				Parameters.vala \
-				ParseProfileJsonObject.vala \
 				ParsedJsonObj.vala \
+				ParseMedia.vala \
+				ParseProfileJsonObject.vala \
+				ParseUrls.vala \
 				ParseUserJsonObject.vala \
 				RequestToken.vala \
+				Size.vala \
 				StatusesHomeTimeline.vala \
 				StatusesMentionTimeline.vala \
 				StatusesDestroy.vala \
@@ -36,8 +40,8 @@ sources = \
 				StatusesShow.vala \
 				StatusesTimeline.vala \
 				StatusesUpdate.vala \
-				Url.vala \
-				URLs.vala \
+				TwitterUrls.vala \
+				Urls.vala \
 				User.vala \
 				UserStream.vala
 
@@ -52,5 +56,5 @@ libruribitaki_la_VALASOURCES = $(sources)
 libruribitaki_la_SOURCES = libruribitaki_la_vala.stamp \
 															 $(csources)
 
-CLEANFILES = *.c *.h *.o *.lo *.lib *.vapi .deps/* .libs/*
+CLEANFILES = *.c *.h *.o *.lo *.lib *.vapi .libs/*
 EXTRA_DIST = $(sources)

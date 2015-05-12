@@ -14,8 +14,8 @@ namespace Ruribitaki{
     public string? retweeted_status_id_str;
     
     public hashtag[] hashtags;
-    public url[] media;
-    public url[] urls;
+    public media[] media;
+    public urls[] urls;
         
     public string? in_reply_to_status_id_str;
     
@@ -148,15 +148,11 @@ namespace Ruribitaki{
             foreach(string entities_member in entities_obj.get_members()){
               var json_array=entities_obj.get_array_member(entities_member);
               switch(entities_member){
-                case "media":
-                media=new url[json_array.get_length()];
-                parse_url(media,json_array);
+                case "media":media=parse_media(json_array);
                 break;
                 case "hashtags":parse_hashtags(json_array);
                 break;
-                case "urls":
-                urls=new url[json_array.get_length()];
-                parse_url(urls,json_array);
+                case "urls":urls=parse_urls(json_array);
                 break;
               }
             }
@@ -249,34 +245,6 @@ namespace Ruribitaki{
       //配列からコンストラクタに格納
       source_label=source_split[1];
       source_url=source_split[0];
-    }
-  
-    //urlの解析
-    private void parse_url(url[] url_array,Json.Array url_json_array){
-      for(int i=0;i<url_json_array.get_length();i++){
-        Json.Object url_json_obj=url_json_array.get_object_element(i);
-        foreach(string member in url_json_obj.get_members()){
-          switch(member){
-            case "display_url":url_array[i].display_url=url_json_obj.get_string_member(member);
-            break;
-            case "expanded_url":url_array[i].expanded_url=url_json_obj.get_string_member(member);
-            break;
-            case "media_url":url_array[i].media_url=url_json_obj.get_string_member(member);
-            break;
-            case "media_url_https":url_array[i].media_url_https=url_json_obj.get_string_member(member);
-            break;
-            case "url":url_array[i].url=url_json_obj.get_string_member(member);
-            break;
-            case "indices":
-            Json.Array indices_json_array=url_json_obj.get_array_member(member);
-            url_array[i].indices=new int[indices_json_array.get_length()];
-            for(int j=0;j<indices_json_array.get_length();j++){
-              url_array[i].indices[j]=(int)indices_json_array.get_int_element(j);
-            }
-            break;
-          }
-        }
-      }
     }
   }
 }
