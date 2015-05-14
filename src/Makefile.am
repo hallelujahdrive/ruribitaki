@@ -21,7 +21,7 @@ sources = \
 				FavoritesDestroy.vala \
 				Functions.vala \
 				Hashtag.vala \
-				Media.vala \
+				Medium.vala \
 				Methods.vala \
 				MonthStrToNum.vala \
 				OAuthAccessToken.vala \
@@ -41,7 +41,7 @@ sources = \
 				StatusesTimeline.vala \
 				StatusesUpdate.vala \
 				TwitterUrls.vala \
-				Urls.vala \
+				Url.vala \
 				User.vala \
 				UserStream.vala
 

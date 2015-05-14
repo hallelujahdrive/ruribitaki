@@ -2,8 +2,8 @@ using Json;
 
 namespace Ruribitaki{
   //urlの解析
-  private media[] parse_media(Json.Array media_json_array){
-    media[] media=new media[media_json_array.get_length()];
+  private medium[] parse_media(Json.Array media_json_array){
+    medium[] media=new medium[media_json_array.get_length()];
     for(int i=0;i<media_json_array.get_length();i++){
       Json.Object media_json_obj=media_json_array.get_object_element(i);
       foreach(string member in media_json_obj.get_members()){

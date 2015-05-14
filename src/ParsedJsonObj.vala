@@ -14,8 +14,8 @@ namespace Ruribitaki{
     public string? retweeted_status_id_str;
     
     public hashtag[] hashtags;
-    public media[] media;
-    public urls[] urls;
+    public medium[] media;
+    public url[] urls;
         
     public string? in_reply_to_status_id_str;
     
