@@ -37,9 +37,15 @@ namespace Ruribitaki{
           json_sb.append(json_frg);
           if(json_frg.has_suffix("\r\n")||json_frg.has_suffix("\r")){
             //シグナル発行
-            //debug
-            //print("%s\n",json_sb.str);
-            callback_json(new ParsedJsonObj.from_string(json_sb.str,account.screen_name));
+            Json.Parser json_parser=new Json.Parser();
+            try{
+              json_parser.load_from_data(json_sb.str);
+              Json.Node json_node=json_parser.get_root();
+              if(json_node!=null){
+                callback_json(new Status(json_node.get_object(),account.screen_name));
+              }
+            }catch(Error error){
+            }
             //json_sbの初期化
             json_sb.erase();
           }
@@ -48,7 +54,7 @@ namespace Ruribitaki{
     }
     
     //シグナル
-    public signal void callback_json(ParsedJsonObj parsed_json_obj);
+    public signal void callback_json(Status status);
     public signal void callback_error(Error e);
   }
 }

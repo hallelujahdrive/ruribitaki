@@ -12,14 +12,9 @@ namespace Ruribitaki{
           break;
           case "expanded_url":urls[i].expanded_url=urls_json_obj.get_string_member(member);
           break;
-          case "url":urls[i].url=urls_json_obj.get_string_member(member);
+          case "indices":urls[i].indices=parse_indices(urls_json_obj.get_array_member(member));
           break;
-          case "indices":
-          Json.Array indices_json_array=urls_json_obj.get_array_member(member);
-          urls[i].indices=new int[indices_json_array.get_length()];
-          for(int j=0;j<indices_json_array.get_length();j++){
-            urls[i].indices[j]=(int)indices_json_array.get_int_element(j);
-          }
+          case "url":urls[i].url=urls_json_obj.get_string_member(member);
           break;
         }
       }

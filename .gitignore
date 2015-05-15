@@ -22,5 +22,5 @@ ltmain.sh
 missing
 autom4te.cache/
 m4/
-src/.deps/
-src/.libs/
+*.deps/
+*.libs/

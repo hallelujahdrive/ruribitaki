@@ -1,11 +1,11 @@
 using Rest;
 
 namespace Ruribitaki{
-  //apiによるjsonの取得(home)
-  public Array<ParsedJsonObj> statuses_home_timeline(Account account,int count)throws Error{
+  //apiによるjsonの取得(mention)
+  public Array<Status> statuses_mention_timeline(Account account,int count)throws Error{
     ProxyCall proxy_call=account.api_proxy.new_call();
     
-    proxy_call.set_function(FUNCTION_STATUSES_HOME_TIMELINE);
+    proxy_call.set_function(FUNCTION_STATUSES_MENTIONS_TIMELINE);
     //proxy_callのパラメータ
     proxy_call.set_method(METHOD_GET);
     proxy_call.add_param(PARAM_COUNT,count.to_string());

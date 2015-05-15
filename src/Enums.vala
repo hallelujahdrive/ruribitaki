@@ -1,7 +1,7 @@
 //enum
 namespace Ruribitaki{
   //ParsedJsonObjのtype
-  public enum ParsedJsonObjType{
+  public enum StatusType{
     DELETE,
     EVENT,
     FRIENDS,
@@ -30,12 +30,5 @@ namespace Ruribitaki{
     UNFOLLOW,
     USER_UPDATE,
     NULL;
-  }
-  
-  //tweetのtype
-  public enum TweetType{
-    NORMAL,
-    NULL,
-    REPLY;
   }
 }

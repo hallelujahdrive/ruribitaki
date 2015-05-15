@@ -2,8 +2,8 @@ using Rest;
 
 namespace Ruribitaki{
   //ツイートの取得
-  public async ParsedJsonObj? statuses_show(Account account,string id_str)throws Error{
-    ParsedJsonObj parsed_json_obj=null;
+  public async Status? statuses_show(Account account,string id_str)throws Error{
+    Status status=null;
     Error error=null;
     
     ProxyCall proxy_call=account.api_proxy.new_call();
@@ -14,7 +14,12 @@ namespace Ruribitaki{
     proxy_call.invoke_async.begin(null,(obj,res)=>{
       try{
         if(proxy_call.invoke_async.end(res)){
-          parsed_json_obj=new ParsedJsonObj.from_string(proxy_call.get_payload(),account.screen_name);
+          Json.Parser json_parser=new Json.Parser();
+          json_parser.load_from_data(proxy_call.get_payload());
+          Json.Node json_node=json_parser.get_root();
+          if(json_node!=null){
+            status=new Status(json_node.get_object(),account.screen_name);
+          }
         }
       }catch(Error e){
         error=e;
@@ -26,6 +31,6 @@ namespace Ruribitaki{
     if(error!=null){
       throw error;
     }
-    return parsed_json_obj;
+    return status;
   }
 }

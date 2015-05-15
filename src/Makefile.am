@@ -1,4 +1,5 @@
-#AUTOMAKE_OPTIONS = subdir-objects
+AUTOMAKE_OPTIONS = subdir-objects
+
 AM_CPPFLAGS = $(RURI_CFLAGS)
 
 BUILT_SOURCES = libruribitaki_la_vala.stamp
@@ -15,35 +16,33 @@ vapi_DATA = \
 
 sources = \
 				Account.vala \
-				AccountVerifyCredential.vala \
+				Entities.vala \
 				Enums.vala \
-				FavoritesCreate.vala \
-				FavoritesDestroy.vala \
-				Functions.vala \
-				Hashtag.vala \
-				Medium.vala \
-				Methods.vala \
 				MonthStrToNum.vala \
-				OAuthAccessToken.vala \
-				Parameters.vala \
-				ParsedJsonObj.vala \
+				ParseIndices.vala \
 				ParseMedia.vala \
 				ParseProfileJsonObject.vala \
 				ParseUrls.vala \
 				ParseUserJsonObject.vala \
-				RequestToken.vala \
-				Size.vala \
-				StatusesHomeTimeline.vala \
-				StatusesMentionTimeline.vala \
-				StatusesDestroy.vala \
-				StatusesRetweet.vala \
-				StatusesShow.vala \
-				StatusesTimeline.vala \
-				StatusesUpdate.vala \
+				Status.vala \
 				TwitterUrls.vala \
-				Url.vala \
 				User.vala \
-				UserStream.vala
+				UserStream.vala \
+				rest_apis/AccountVerifyCredential.vala \
+				rest_apis/FavoritesCreate.vala \
+				rest_apis/FavoritesDestroy.vala \
+				rest_apis/Functions.vala \
+				rest_apis/Methods.vala \
+				rest_apis/OAuthAccessToken.vala \
+				rest_apis/Parameters.vala \
+				rest_apis/RequestToken.vala \
+				rest_apis/StatusesHomeTimeline.vala \
+				rest_apis/StatusesMentionTimeline.vala \
+				rest_apis/StatusesDestroy.vala \
+				rest_apis/StatusesRetweet.vala \
+				rest_apis/StatusesShow.vala \
+				rest_apis/StatusesTimeline.vala \
+				rest_apis/StatusesUpdate.vala
 
 csources = $(sources:.vala=.c)
 
@@ -56,5 +55,5 @@ libruribitaki_la_VALASOURCES = $(sources)
 libruribitaki_la_SOURCES = libruribitaki_la_vala.stamp \
 															 $(csources)
 
-CLEANFILES = *.c *.h *.o *.lo *.lib *.vapi .libs/*
+CLEANFILES = *.c *.h *.o *.lo *.lib *.vapi .libs/* rest_apis/*.c rest_apis/*.h rest_apis/*.o rest_apis/*.lo
 EXTRA_DIST = $(sources)

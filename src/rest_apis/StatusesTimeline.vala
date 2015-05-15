@@ -2,9 +2,9 @@ using Json;
 using Rest;
 
 namespace Ruribitaki{
-  private GLib.Array<ParsedJsonObj> statuses_timeline(ProxyCall proxy_call,string screen_name)throws Error{
+  private GLib.Array<Status> statuses_timeline(ProxyCall proxy_call,string screen_name)throws Error{
     //戻り値
-    GLib.Array<ParsedJsonObj> parsed_json_obj_array=new GLib.Array<ParsedJsonObj>();
+    GLib.Array<Status> status_array=new GLib.Array<Status>();
     //取得
     try{
       proxy_call.run();
@@ -18,12 +18,12 @@ namespace Ruribitaki{
       if(json_node!=null){
          Json.Array json_array=json_node.get_array();
          for(uint i=0;i<json_array.get_length();i++){
-           parsed_json_obj_array.append_val(new ParsedJsonObj(json_array.get_element(i),screen_name));
+           status_array.append_val(new Status(json_array.get_object_element(i),screen_name));
          }
        }
     }catch(Error error){
       throw error;
     }
-    return parsed_json_obj_array;
+    return status_array;
   }
 }
