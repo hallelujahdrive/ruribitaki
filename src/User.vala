@@ -1,6 +1,6 @@
 namespace Ruribitaki{
-  [Compact]
-  public class User{
+  //userの構造体
+  public struct User{
     public string name;
     public string screen_name;
     public int64 id;

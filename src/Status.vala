@@ -58,7 +58,7 @@ namespace Ruribitaki{
         json_obj=json_obj.get_object_member("delete");
         timespamp_ms=json_obj.get_string_member("timestamp_ms");
         json_obj=json_obj.get_object_member("status");
-        user=new User();
+        user=User();
       }
       
       foreach(string member in json_obj.get_members()){

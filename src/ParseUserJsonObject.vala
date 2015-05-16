@@ -2,7 +2,7 @@ using Json;
 
 namespace Ruribitaki{
   private User parse_user_json_object(Json.Object user_json_object){
-    User user=new User();
+    User user=User();
     foreach(string user_member in user_json_object.get_members()){
       switch(user_member){
         case "name":user.name=user_json_object.get_string_member(user_member);
