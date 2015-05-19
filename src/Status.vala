@@ -1,12 +1,13 @@
 using Json;
 
 namespace Ruribitaki{
-  public class Status{
+  public class Status:GLib.Object{
     //メンバ
     public DateTime created_at;
     
     public hashtag[]? entities_hashtags;
     public medium[]? entities_media;
+    public medium[]? extended_entities_media;
     public url[]? entities_urls;
     public user_mention[]? entities_user_mentions;
     
@@ -77,7 +78,7 @@ namespace Ruribitaki{
               break;
               case "urls":entities_urls=parse_urls(json_array);
               break;
-              case "user_mentions":entities_user_mentions=parse_user_mentions(json_array);
+              case "user_mentions":entities_user_mentions=parse_user_mentions(json_array,my_screen_name);
               break;
             }
           }
@@ -122,6 +123,17 @@ namespace Ruribitaki{
             default:
             //print("Event : %s\n",json_obj.get_string_member(event_member));
             break;
+          }
+          break;
+          //extended_entitiesの解析
+          case "extended_entities":
+          Json.Object extended_entities_obj=json_obj.get_object_member(member);
+          foreach(string extended_entities_member in extended_entities_obj.get_members()){
+            Json.Array json_array=extended_entities_obj.get_array_member(extended_entities_member);
+            switch(extended_entities_member){
+              case "media":extended_entities_media=parse_media(json_array);
+              break;
+            }
           }
           break;
           case "friends":status_type=StatusType.FRIENDS;
@@ -240,7 +252,7 @@ namespace Ruribitaki{
     }
     
     //user_mentionsの解析
-    private user_mention[] parse_user_mentions(Json.Array json_array){
+    private user_mention[] parse_user_mentions(Json.Array json_array,string? my_screen_name){
       user_mention[] user_mentions=new user_mention[json_array.get_length()];
       for(int i=0;i<json_array.get_length();i++){
         Json.Object json_obj=json_array.get_object_element(i);
@@ -254,7 +266,10 @@ namespace Ruribitaki{
             break;
             case "name":user_mentions[i].name=json_obj.get_string_member(member);
             break;
-            case "screen_name":user_mentions[i].screen_name=json_obj.get_string_member(member);
+            case "screen_name":
+            user_mentions[i].screen_name=json_obj.get_string_member(member);
+            //リプライの判定
+            is_reply=user_mentions[i].screen_name==my_screen_name;
             break;
           }
         }
