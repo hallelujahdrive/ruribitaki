@@ -21,7 +21,6 @@ sources = \
 				MonthStrToNum.vala \
 				ParseIndices.vala \
 				ParseMedia.vala \
-				ParseProfileJsonObject.vala \
 				ParseUrls.vala \
 				ParseUserJsonObject.vala \
 				Status.vala \
@@ -42,7 +41,8 @@ sources = \
 				rest_apis/StatusesRetweet.vala \
 				rest_apis/StatusesShow.vala \
 				rest_apis/StatusesTimeline.vala \
-				rest_apis/StatusesUpdate.vala
+				rest_apis/StatusesUpdate.vala \
+				rest_apis/UsersShow.vala
 
 csources = $(sources:.vala=.c)
 

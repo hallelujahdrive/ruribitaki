@@ -12,4 +12,5 @@ namespace Ruribitaki{
 	private static const string FUNCTION_STATUSES_UPDATE="1.1/statuses/update.json";
 	private static const string FUNCTION_STATUSES_SHOW="1.1/statuses/show.json";
 	private static const string FUNCTION_USER="1.1/user.json";
+	private static const string FUNCTION_USERS_SHOW="1.1/users/show.json";
 }

@@ -14,7 +14,7 @@ namespace Ruribitaki{
       parser.load_from_data(proxy_call.get_payload());
       Json.Node node=parser.get_root();
       Json.Object object=node.get_object();
-      parse_profile_json_object(account,object);
+      parse_user(object,account);
     }catch(Error error){
       throw error;
     }

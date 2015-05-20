@@ -59,7 +59,7 @@ namespace Ruribitaki{
         json_obj=json_obj.get_object_member("delete");
         timespamp_ms=json_obj.get_string_member("timestamp_ms");
         json_obj=json_obj.get_object_member("status");
-        user=User();
+        user=new User();
       }
       
       foreach(string member in json_obj.get_members()){
@@ -176,7 +176,7 @@ namespace Ruribitaki{
             source=json_node.get_string();
             parse_source(source);
           }else{
-            user=parse_user_json_object(json_node.get_object());
+            user=parse_user(json_node.get_object());
           }
           break;
           case "target_object":target_status=new Status(json_obj.get_object_member(member),my_screen_name);
@@ -189,7 +189,7 @@ namespace Ruribitaki{
           break;
           //userの解析
           case "user":
-          user=parse_user_json_object(json_obj.get_object_member(member));
+          user=parse_user(json_obj.get_object_member(member));
           is_mine=user.screen_name==my_screen_name;
           break;
           //多分だけどこれ2つ読み出されるのはDELETEの時だけ
